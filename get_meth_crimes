@@ -1,0 +1,12 @@
+import pandas as pd
+#open the csv in a dataframe
+df_paso = pd.read_csv("El_paso.csv")
+#get all column names
+list(df_paso)
+#get all unique crimes 
+df_paso['incident_description'].unique()
+#all amphetamine crimes 
+list_crimes= ['UNLAWFUL POSSESSION OF AMPHETAMINES', 'UNLAW DIST/MANU/DISP/SALE/POSS OF AMPHETAMINE (FREE TXT)', 'UNLAWFUL DISTRIBUTION OF AMPHETAMINE', 'UNLAW DIST/MANU/DISP/SALE/POSS OF AMPHETAMINE']
+df2 = df_paso.loc[df_paso['incident_description'].isin(list_crimes)]
+#save as a csv
+pd.to_csv(filename you want)
