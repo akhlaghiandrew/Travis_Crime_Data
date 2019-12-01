@@ -2,19 +2,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-list_countries=['EGY', 'NGA', 'SOM', 'SYR', 'YEM', 'IRQ', 'AFG', 'LBY', 'PHL', 'PAK','MLI']
-year_list=["2000", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009","2010", "2011", "2012", "2013", "2014", "2015", "2016"]
-list_tables=['Corruption','Government_Effectiveness','Political_Stability','Regulatory_Quality','Rule_Law','Voice_Accountability']
-
-df_c=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Corruption.csv')
-df_gf=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Government_Effectiveness.csv')
-df_ps=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Political_Stability.csv')
-df_rq=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Regulatory_Quality.csv')
-df_rl=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Rule_Law.csv')
-df_va=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Voice_Accountability.csv')
-
-def get_columns(country):
-    
+list_countries=['Afghanistan', 'Iraq', 'Somalia', 'Philippines']
+list_categories=['PV.EST', 'RL.EST', 'CC.EST']
+def transform_data(country,graph)
 
 for country in list_countries:
     df_c2= df_c[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
