@@ -1,43 +1,26 @@
 #!/usr/bin/env python2 
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 list_countries=['Afghanistan', 'Iraq', 'Somalia', 'Philippines']
 list_categories=['PV.EST', 'RL.EST', 'CC.EST']
-def transform_data(country,graph)
 
-for country in list_countries:
-    df_c2= df_c[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
-    df_c_c=df_c2.loc[df_c2['Unnamed: 1']==country]
-    df_c_t=df_c_c.T
-    df_c_final=df_c_t.drop(['Unnamed: 1']).astype('float')
-    df_gf2= df_gf[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
-    df_gf_c=df_gf2.loc[df_gf2['Unnamed: 1']==country]
-    df_gf_t=df_gf_c.T
-    df_gf_final=df_gf_t.drop(['Unnamed: 1']).astype('float')
-    df_ps2= df_ps[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
-    df_ps_c=df_ps2.loc[df_ps2['Unnamed: 1']==country]
-    df_ps_t=df_ps_c.T
-    df_ps_final=df_ps_t.drop(['Unnamed: 1']).astype('float')
-    df_rq2= df_rq[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
-    df_rq_c=df_rq2.loc[df_rq2['Unnamed: 1']==country]
-    df_rq_t=df_rq_c.T
-    df_rq_final=df_rq_t.drop(['Unnamed: 1']).astype('float')
-    df_rl2= df_rl[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
-    df_rl_c=df_rl2.loc[df_rl2['Unnamed: 1']==country]
-    df_rl_t=df_rl_c.T
-    df_rl_final=df_rl_t.drop(['Unnamed: 1']).astype('float')
-    df_va2= df_va[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
-    df_va_c=df_va2.loc[df_va2['Unnamed: 1']==country]
-    df_va_t=df_va_c.T
-    df_va_final=df_va_t.drop(['Unnamed: 1']).astype('float')
-    plt.plot(year_list, df_c_final, label="Corruption")
-    plt.plot(year_list, df_gf_final, label="Gov Effectiveness")
-    plt.plot(year_list, df_ps_final, label="Pol Stability")
-    plt.plot(year_list, df_rq_final, label="Reg Quality ")
-    plt.plot(year_list, df_rl_final, label="Rule Law")
-    plt.plot(year_list, df_va_final, label="Voice Accountability")
-    plt.legend()
+df_WGI = pd.read_csv("El_paso.csv")
+list(df_WGI)
+df_WGI['incident_description'].unique()
+list_countries=['Afghanistan', 'Iraq', 'Somalia', 'Philippines']
+list_categories=['PV.EST', 'RL.EST', 'CC.EST']
+df_countries = df_WGI.loc[df_WGI['Country Name'].isin(list_countries)]
+df_indicators = df_countries.loc[df_countries['Indicator Code'].isin(list_categories)]
+df_indicators.to_csv(filename you want)
+
+def make_graph(indicator
+
+plt.plot(year_list, df_c_final, label="Corruption")
+plt.plot(year_list, df_ps_final, label="Pol Stability")
+plt.plot(year_list, df_rl_final, label="Rule Law")
+plt.legend()
     filename='/Users/hist-aca2585/Desktop/Aaron-six_{}'.format(country)
     plt.savefig(filename)
     plt.close()
