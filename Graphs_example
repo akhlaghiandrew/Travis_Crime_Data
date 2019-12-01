@@ -6,21 +6,20 @@ import os
 list_countries=['Afghanistan', 'Iraq', 'Somalia', 'Philippines']
 list_categories=['PV.EST', 'RL.EST', 'CC.EST']
 
-df_WGI = pd.read_csv("El_paso.csv")
+df_WGI = pd.read_csv(FILE)
 list(df_WGI)
 df_WGI['incident_description'].unique()
 list_countries=['Afghanistan', 'Iraq', 'Somalia', 'Philippines']
 list_categories=['PV.EST', 'RL.EST', 'CC.EST']
 df_countries = df_WGI.loc[df_WGI['Country Name'].isin(list_countries)]
 df_indicators = df_countries.loc[df_countries['Indicator Code'].isin(list_categories)]
-df_indicators.to_csv(filename you want)
+df_indicators.to_csv(FILE2)
 
-def make_graph(indicator
-
-plt.plot(year_list, df_c_final, label="Corruption")
-plt.plot(year_list, df_ps_final, label="Pol Stability")
-plt.plot(year_list, df_rl_final, label="Rule Law")
-plt.legend()
-    filename='/Users/hist-aca2585/Desktop/Aaron-six_{}'.format(country)
-    plt.savefig(filename)
-    plt.close()
+df1=pd.read_csv(FILE2)
+df_country=df1.loc[df1['Country Name']==country]
+df_pv=df_country.loc[df_country['Indicator Code']=='PV.EST']
+df_pv_years=df_pv[['1996', '1998', '2000', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018']]
+df_pv_t=df_pv.T
+df_pv_t.reset_index(level=0, inplace=True)
+plt.plot(df_pv_t['index'], df_iraq3[3])
+plt.show()
