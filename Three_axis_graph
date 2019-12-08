@@ -1,0 +1,57 @@
+#!/usr/bin/env python2
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+
+os.mkdir("/Users/hist-aca2585/Desktop/three_sides/")
+os.chdir("/Users/hist-aca2585/Desktop/three_sides/")
+
+def make_patch_spines_invisible(ax):
+    ax.set_frame_on(True)
+    ax.patch.set_visible(False)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
+
+list_countries=["Somalia", "Afghanistan", "Iraq", "Egypt", "Nigeria", "Yemen", "Philippines", "Libya", "Syria", "Pakistan"]
+list_countries_WGI=['EGY', 'NGA', 'SOM', 'SYR', 'YEM', 'IRQ', 'AFG', 'LBY', 'PHL', 'PAK','MLI']
+
+year=["2000", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009","2010", "2011", "2012", "2013", "2014", "2015", "2016"]
+year_aid=["2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009","2010", "2011", "2012", "2013", "2014", "2015", "2016"]
+
+#need to do this first
+for country in list_countries_WGI:
+    df_gf=pd.read_csv('/Users/hist-aca2585/Desktop/WGI/CSV/Government_Effectiveness.csv')
+    df_gf2= df_gf[['Unnamed: 1','2000','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016']]
+    df_gf_c=df_gf2.loc[df_gf2['Unnamed: 1']==country]
+    df_gf_t=df_gf_c.T
+    df_gf_final=df_gf_t.drop(['Unnamed: 1']).astype('float')
+    df_gf_final.to_csv(country)
+
+for country in list_countries:
+    fig, ax1= plt.subplots()
+    fig.subplots_adjust(right=0.75)
+    ax2=ax1.twinx()
+    ax3=ax1.twinx()
+    ax3.spines["right"].set_position(("axes", 1.2))
+    make_patch_spines_invisible(ax3)
+    ax3.spines["right"].set_visible(True)
+
+    file2="/Users/hist-aca2585/Desktop/Aaron/USAID/{}USAID.csv".format(country)
+    df_aid=pd.read_csv(file2)
+    df_attacks=pd.read_csv("/Users/hist-aca2585/Desktop/Aaron/all_gtd_attacks.csv")
+    df2=df_attacks[['Year',country]]
+    df3=df2.loc[df2['Year'].isin(year_aid)]
+    ax1.set_xlabel("year")
+    color = 'tab:red'
+    ax1.set_ylabel('aid')
+    aid_int=df_aid['Total Aid'].astype('float')
+    ax1.plot(year_aid, aid_int, color=color, label="Aid")
+    color ='tab:blue'
+    ax2.set_ylabel('gov')
+    ax2.plot(year, df_gov3, color=color, label="Gov")
+    color = 'tab:green'
+    ax3.set_ylabel('attacks')
+    ax3.plot(year_aid, df3[country], color=color, label="Attacks")
+    plt.legend()
+    plt.savefig(country)
+    plt.close()
