@@ -14,7 +14,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 vectorizer = CountVectorizer()
 X = vectorizer.fit_transform(document_split)
 vocabulary = vectorizer.get_feature_names()
-vocabulary
+
+
 import lda
 model = lda.LDA(n_topics = 10, n_iter=1000, random_state=1)
 model.fit(X)
