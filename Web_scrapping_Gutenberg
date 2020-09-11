@@ -29,16 +29,16 @@ from datetime import date
     os.mkdir(dirName)
     name=dirName+"/{}".format(title)
     doc = open(name, 'w+')
+    doc2 = open('all.txt', 'w+')
     doc.write(dataText)
     doc.close()
 
 import numpy as np
 import os
 
-os.wal 
-file = open('text_data.txt', 'w+')
+
+file = open('all.txt', 'w+')
 text_text = str(text_data)
-file.write(text_text)
 
 from sklearn.feature_extraction.text import CountVectorizer
 vectorizer = CountVectorizer()
