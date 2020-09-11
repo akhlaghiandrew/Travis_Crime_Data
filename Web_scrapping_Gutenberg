@@ -23,14 +23,39 @@ from datetime import date
     soup2 = BeautifulSoup(resp2, 'html.parser')
     soup3=soup2.find_all('p')
     dataText=str(soup3)
+    title=soup2.find('title')
     today = date.today()
     dirName="/Users/andrewakhlaghi/Desktop/Fars/{}".format(today)
     os.mkdir(dirName)
-    name='/Users/anrdewakhlaghi/Desktop
-        doc = open(name, 'w+')
-        doc.write(dataText)
-        doc.close()
+    name=dirName+"/{}".format(title)
+    doc = open(name, 'w+')
+    doc.write(dataText)
+    doc.close()
 
+import numpy as np
+import os
+
+os.wal 
+file = open('text_data.txt', 'w+')
+text_text = str(text_data)
+file.write(text_text)
+
+from sklearn.feature_extraction.text import CountVectorizer
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(document_split)
+vocabulary = vectorizer.get_feature_names()
+
+import lda
+model = lda.LDA(n_topics = 10, n_iter=1000, random_state=1)
+model.fit(X)
+
+topic_word = model.topic_word_
+n_top_words=50
+
+for i, topic_distribution in enumerate(topic_word):
+  topic_words = np.array(vocabulary)[np.argsort(topic_distribution)][:-(n_top_words+1):-1]
+  print('topic {}: {}'.format(i, ' '.join(topic_words)))
+  print()
 
 
 
