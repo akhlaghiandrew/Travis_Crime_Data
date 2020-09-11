@@ -1,10 +1,13 @@
 import urllib
 from urllib import request
+from urllib.parse import quote
 from bs4 import BeautifulSoup
+
+
 target_page="https://www.farsnews.ir/economy"
 resp = urllib.request.urlopen(target_page)
 soup = BeautifulSoup(resp, 'html.parser')
-site="https://www.farsnews.ir/"
+site="https://www.farsnews.ir"
 
 list_1=[]
 
@@ -14,11 +17,12 @@ for link in soup.find_all('a'):
 import os
 from datetime import date 
 
+  url=site + quote(list_1[-29])
 
  for item in list:
     try:
     part_1="farsnews.ir"
-    url=part_1+item
+    url=site + quote(item)
     resp2=urllib.request.urlopen(url)
     soup2 = BeautifulSoup(resp2, 'html.parser')
     soup3=soup2.find_all('p')
@@ -33,58 +37,11 @@ from datetime import date
     doc.write(dataText)
     doc.close()
 
-import numpy as np
-import os
-
-
-file = open('all.txt', 'w+')
-text_text = str(text_data)
-
-from sklearn.feature_extraction.text import CountVectorizer
-vectorizer = CountVectorizer()
-X = vectorizer.fit_transform(document_split)
-vocabulary = vectorizer.get_feature_names()
-
-import lda
-model = lda.LDA(n_topics = 10, n_iter=1000, random_state=1)
-model.fit(X)
-
-topic_word = model.topic_word_
-n_top_words=50
-
-for i, topic_distribution in enumerate(topic_word):
-  topic_words = np.array(vocabulary)[np.argsort(topic_distribution)][:-(n_top_words+1):-1]
-  print('topic {}: {}'.format(i, ' '.join(topic_words)))
-  print()
 
 
 
-###This was a tutorial for A workshop i did two years ago
-###Project Gutbenburg has gotten very very serious about blocking web scrapping 
-#!/usr/bin/env python3
-# make sure your working directory is the Desktop, so
-path = "c:\Users\Lib-Checkout\Desktop"
-#try this if using a PC
-path = r"c:\Users\Lib-Checkout\Desktop"
-#comment this out 
-import urllib
-from urllib import request
-import re
-target_page="http://www.gutenberg.org/ebooks/bookshelf/325"
-resp = urllib.request.urlopen(target_page)
-respData = resp.read()
-string_data=str(respData)
-numbers = re.findall(r"ebook:\d+", string_data)
-titles = re.findall(r"\"ebook:\d+\">.*?<", string_data)
-for number in numbers:
-    try:
-        number2=number[6:]
-        url="http://www.gutenberg.org/cache/epub/{}/pg{}.txt".format(number2,number2)
-        resp2=urllib.request.urlopen(url)
-        respData2=resp2.read()
-        respData3=str(respData2)
-        name=r"c:\Users\Lib-Checkout\Desktop\{}.txt".format(number2)
-        doc = open(name, 'w+')
-        doc.write(respData3)
-    except:
-        pass
+
+
+
+
+
