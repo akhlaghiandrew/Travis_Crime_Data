@@ -2,8 +2,12 @@ import urllib
 from urllib import request
 from urllib.parse import quote
 from bs4 import BeautifulSoup
+from collections import Counter
+import os 
+import nltk
+from nltk.tokenize import word_tokenize
 
-
+#Get economic articles links
 target_page="https://www.farsnews.ir/economy"
 resp = urllib.request.urlopen(target_page)
 soup = BeautifulSoup(resp, 'html.parser')
@@ -17,8 +21,7 @@ for link in soup.find_all('a'):
 import os
 from datetime import date 
 
-  url=site + quote(list_1[-29])
-
+#Scrape economic articles save them to directory for that day
  for item in list:
     try:
     part_1="farsnews.ir"
@@ -36,8 +39,34 @@ from datetime import date
     doc2 = open('all.txt', 'w+')
     doc.write(dataText)
     doc.close()
+    
+    except: 
+    pass
+    
+  doc2.close()
 
+#Remove stopwords 
+source = os.listdir()
+for file in source:
+  text = open(file).read()
+  text_decode = text.decode('utf-8', 'ignore')
+  token_list=nltk.tokenize.word_tokenize(text)
+  stop_words= open('/Users/andrewakhlaghi/Desktop/digitalhumanities/stopwords.txt').read()
+  text_filtered = [item for item in token_list if (item not in stop_words)]
+  path='clean_{}'.format(file)
+  new_file=open(path, 'wb')
+  holder=[]
+  holder.append(' '.join(text_filtered))
+  for item in holder:
+    word=item.encode('utf-8','ignore')
+    new_file.write(word)
 
+#Get most common words
+file = open("all.txt", "rt")
+data=file.read()
+words=data.split()
+Counter = Counter(words)
+Counter.most_common(10)
 
 
 
