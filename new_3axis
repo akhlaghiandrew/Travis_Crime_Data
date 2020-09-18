@@ -1,0 +1,37 @@
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def make_patch_spines_invisible(ax):
+    ax.set_frame_on(True)
+    ax.patch.set_visible(False)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
+
+fig, ax1= plt.subplots()
+fig.subplots_adjust(right=0.75)
+ax2=ax1.twinx()
+ax3=ax1.twinx()
+ax3.spines["right"].set_position(("axes", 1.2))
+make_patch_spines_invisible(ax3)
+ax3.spines["right"].set_visible(True)
+
+
+file2="/Users/hist-aca2585/Desktop/Aaron/USAID/{}USAID.csv".format(country)
+df_aid=pd.read_csv(file2)
+df_attacks=pd.read_csv("/Users/hist-aca2585/Desktop/Aaron/all_gtd_attacks.csv")
+df2=df_attacks[['Year',country]]
+df3=df2.loc[df2['Year'].isin(year_aid)]
+ax1.set_xlabel("year")
+color = 'tab:red'
+ax1.set_ylabel('women_age')
+ax1.plot(year_aid, aid_int, color=color, label="Aid")
+color ='tab:blue'
+ax2.set_ylabel('gov')
+ax2.plot(year, df_gov3, color=color, label="Gov")
+color = 'tab:green'
+ax3.set_ylabel('attacks')
+ax3.plot(year_aid, df3[country], color=color, label="Attacks")
+plt.legend()
+plt.savefig(country)
+plt.close()
