@@ -22,7 +22,7 @@ import os
 from datetime import date 
 
 #Scrape economic articles save them to directory for that day
- for item in list:
+ for item in list_1:
     try:
     part_1="farsnews.ir"
     url=site + quote(item)
