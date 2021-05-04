@@ -22,28 +22,23 @@ import os
 from datetime import date 
 
 #Scrape economic articles save them to directory for that day
- for item in list_1:
-    try:
+for item in list_1:
+  try:
     part_1="farsnews.ir"
     url=site + quote(item)
     resp2=urllib.request.urlopen(url)
     soup2 = BeautifulSoup(resp2, 'html.parser')
     soup3=soup2.find_all('p')
     dataText=str(soup3)
-    title=soup2.find('title')
+    title=str(soup2.find('title'))
     today = date.today()
-    dirName="/Users/andrewakhlaghi/Desktop/Fars/{}".format(today)
-    os.mkdir(dirName)
-    name=dirName+"/{}".format(title)
-    doc = open(name, 'w+')
-    doc2 = open('all.txt', 'w+')
+    doc = open(title, 'w+')
     doc.write(dataText)
     doc.close()
-    
-    except: 
+  except: 
     pass
     
-  doc2.close()
+ 
 
 #Remove stopwords 
 source = os.listdir()
